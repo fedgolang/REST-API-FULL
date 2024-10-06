@@ -11,6 +11,12 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 )
 
+const (
+	envLocal = "local"
+	envDev   = "dev"
+	envProd  = "prod"
+)
+
 // CONFIG_PATH=./config/local.yaml go run ./cmd/url-shortener/main.go
 func main() {
 	cfg := config.MustLoad()
@@ -34,12 +40,6 @@ func main() {
 	router.Use(middleware.URLFormat)
 
 }
-
-const (
-	envLocal = "local"
-	envDev   = "dev"
-	envProd  = "prod"
-)
 
 func setupLogger(env string) *slog.Logger {
 	var log *slog.Logger
